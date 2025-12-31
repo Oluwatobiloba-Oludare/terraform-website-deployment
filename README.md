@@ -1,6 +1,8 @@
 
+# End-to-end Static Portfolio Website Deployment using Terraform as Infrastructure as Code
 
-# *End-to-end static portfolio website deployment using Terraform as Infrastructure as Code.*
+![Alt text](Reference-Architecture.png)
+
 
 ## 📌 Project Overview
 
@@ -17,25 +19,14 @@ All infrastructure components required to host the website are defined declarati
 * Gain hands-on experience with Terraform providers, state management, and troubleshooting
 * Eliminate manual cloud configuration and configuration drift
 
----
+
 
 ## 🛠️ Technologies Used
 
 * **Terraform**
 * **Cloud Provider** (e.g., AWS)
 * **Git & GitHub**
-* **Static Website Technologies** (HTML, CSS, JS)
-
----
-
-## 🧱 Architecture (High-Level)
-
-* Terraform provisions the required cloud infrastructure
-* Static website assets are hosted on cloud storage
-* Permissions and configurations are managed declaratively
-* Infrastructure lifecycle is controlled using `terraform plan` and `terraform apply`
-
-*(You can later add a simple architecture diagram here — optional but impressive)*
+* **Static Website Technologies** (HTML, CSS)
 
 
 
@@ -49,7 +40,6 @@ Ensure you have:
 * Cloud provider credentials configured
 * Git installed
 
----
 
 ### 2️⃣ Initialize Terraform
 
@@ -57,7 +47,6 @@ Ensure you have:
 terraform init
 ```
 
----
 
 ### 3️⃣ Review the Execution Plan
 
@@ -75,13 +64,12 @@ terraform apply
 
 Confirm with `yes` when prompted.
 
----
 
 ### 5️⃣ Access the Website
 
 After deployment, Terraform outputs will display the URL or endpoint where the static website is hosted.
 
----
+
 
 ## 🔄 Infrastructure Lifecycle Management
 
@@ -90,6 +78,10 @@ To destroy all resources:
 ```bash
 terraform destroy
 ```
+
+Project Outcome
+
+![Alt text](Project-outcome.PNG)
 
 
 ## 🧠 Key Concepts Demonstrated
@@ -113,7 +105,7 @@ terraform destroy
 
 These challenges strengthened my understanding of **real-world DevOps workflows**.
 
----
+
 
 ## 📈 Future Improvements
 
@@ -122,21 +114,5 @@ These challenges strengthened my understanding of **real-world DevOps workflows*
 * Add CI/CD pipeline for automated deployments
 * Separate environments (dev / prod)
 * Integrate CDN for improved performance
-
----
-
-## 👤 Author
-
-**[Your Name]**
-Aspiring DevOps / Cloud Engineer
-📍 Nigeria
-
----
-
-## 📜 License
-
-This project is open-source and available under the MIT License.
-
-
 
 
