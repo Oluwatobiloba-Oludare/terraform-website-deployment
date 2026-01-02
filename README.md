@@ -1,5 +1,5 @@
 
-# End-to-end Static Portfolio Website Deployment using Terraform as Infrastructure as Code
+# Automated Static Portfolio Website Deployment on AWS S3 using Terraform as Infrastructure as Code
 
 ![Alt text](Reference-Architecture.png)
 
