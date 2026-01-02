@@ -2,7 +2,7 @@ resource "aws_s3_bucket" "mybucket" {
   bucket = var.bucketname
 
   tags = {
-    Name        = "Mybucket"
+    Name        = "Mybucket" 
   }
 }
 
@@ -45,7 +45,7 @@ resource "aws_s3_bucket_policy" "public_read" {
 }
 
 
-resource "aws_s3_object" "terraform_project1" {
+resource "aws_s3_object" "website_files" {
   for_each = {
     "index.html"  = "text/html"
     "error.html"  = "text/html"
