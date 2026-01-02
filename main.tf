@@ -23,39 +23,41 @@ resource "aws_s3_bucket_public_access_block" "sample" {
   restrict_public_buckets = false
 }
 
-resource "aws_s3_bucket_acl" "example" {
-  depends_on = [
-    aws_s3_bucket_ownership_controls.sample,
-    aws_s3_bucket_public_access_block.sample,
-  ]
-
+resource "aws_s3_bucket_policy" "public_read" {
   bucket = aws_s3_bucket.mybucket.id
-  acl    = "public-read"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid       = "PublicReadGetObject"
+        Effect    = "Allow"
+        Principal = "*"
+        Action    = "s3:GetObject"
+        Resource  = "${aws_s3_bucket.mybucket.arn}/*"
+      }
+    ]
+  })
+
+  depends_on = [
+    aws_s3_bucket_public_access_block.sample
+  ]
 }
 
-resource "aws_s3_object" "index" {
-  bucket = var.bucketname
-  key    = "index.html"
-  source = "index.html"
-  acl    =  "public-read"
-  content_type = "text/html"
+
+resource "aws_s3_object" "terraform_project1" {
+  for_each = {
+    "index.html"  = "text/html"
+    "error.html"  = "text/html"
+    "profile.png" = "image/png"
+  }
+
+  bucket       = var.bucketname
+  key          = each.key
+  source       = each.key
+  content_type = each.value
 }
 
-resource "aws_s3_object" "error" {
-  bucket = var.bucketname
-  key    = "error.html"
-  source = "error.html"
-  acl    =  "public-read"
-  content_type = "text/html"
-}
-
-resource "aws_s3_object" "profile" {
-  bucket = var.bucketname
-  key    = "profile.png"
-  source = "profile.png"
-  acl    =  "public-read"
-
-}
 
 resource "aws_s3_bucket_website_configuration" "website" {
   bucket = aws_s3_bucket.mybucket.id
@@ -68,6 +70,6 @@ resource "aws_s3_bucket_website_configuration" "website" {
     key = "error.html"
   }
 
-  depends_on = [ aws_s3_bucket_acl.example ]
+  depends_on = [ aws_s3_bucket_policy.public_read ]
 
 }
